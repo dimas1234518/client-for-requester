@@ -1,0 +1,208 @@
+[
+  {
+    "id": "574db882-e719-4ff2-9079-6bc306cf347c",
+    "name": "New FOLDER 123",
+    "typeRequest": "FOLDER",
+    "request": "",
+    "headers": [],
+    "parent": "0b12e3ee-935d-498d-a175-b3e924fc5294",
+    "typeAuthorization": "NO_AUTH",
+    "body": ""
+  },
+  {
+    "id": "0b12e3ee-935d-498d-a175-b3e924fc5294",
+    "name": "new Collection 1",
+    "typeRequest": "COLLECTIONS"
+  },
+  {
+    "id": "da8311d5-b3db-44f1-bbb3-e84535807cb0",
+    "requestMethod": "GET",
+    "name": "New REQUEST New Collection",
+    "typeRequest": "REQUEST",
+    "request": "",
+    "headers": [],
+    "parent": "6f8d1d77-0340-4c71-b60c-cfa21ccfe12f",
+    "typeAuthorization": "NO_AUTH",
+    "body": "",
+    "typeBody": "NONE",
+    "typeResponseBody": "NONE"
+  },
+  {
+    "id": "6f8d1d77-0340-4c71-b60c-cfa21ccfe12f",
+    "name": "new Collection 3",
+    "typeRequest": "COLLECTIONS"
+  },
+  {
+    "id": "1cb46d71-1c98-4db1-86cf-4df03a3fc4de",
+    "requestMethod": "GET",
+    "name": "New REQUEST New Folder 3.1",
+    "typeRequest": "REQUEST",
+    "request": "",
+    "headers": [],
+    "parent": "07cdfac3-e700-4f85-9491-6b479a91b3f6",
+    "typeAuthorization": "NO_AUTH",
+    "body": "",
+    "typeBody": "NONE",
+    "typeResponseBody": "NONE"
+  },
+  {
+    "id": "07cdfac3-e700-4f85-9491-6b479a91b3f6",
+    "name": "new Folder 3.1",
+    "typeRequest": "FOLDER",
+    "parent": "23bc7547-ff4f-42ab-9f0f-481af916e92e"
+  },
+  {
+    "id": "23bc7547-ff4f-42ab-9f0f-481af916e92e",
+    "name": "new Collection 3",
+    "typeRequest": "COLLECTIONS"
+  },
+  {
+    "id": "ffd57189-302b-4c7c-a4bb-33fa9afc8c1f",
+    "name": "New FOLDERыпавпвыап",
+    "typeRequest": "FOLDER",
+    "request": "",
+    "headers": [],
+    "parent": "872ad1a0-4001-4816-8355-d76f2944546f",
+    "typeAuthorization": "NO_AUTH",
+    "body": ""
+  },
+  {
+    "id": "872ad1a0-4001-4816-8355-d76f2944546f",
+    "name": "New Request",
+    "typeRequest": "COLLECTIONS",
+    "request": "",
+    "headers": [],
+    "body": ""
+  },
+  {
+    "id": "fd2f8a21-efeb-4e8c-a085-808638e50830",
+    "name": "New Request 4.4.4",
+    "typeRequest": "REQUEST",
+    "parent": "1d689cf0-8b5a-4aec-a050-0a4c09e8a4d9"
+  },
+  {
+    "id": "feeb844f-1630-465b-b2f6-471d76b5adf4",
+    "requestMethod": "GET",
+    "name": "New REQUEST",
+    "typeRequest": "REQUEST",
+    "request": "",
+    "headers": [],
+    "parent": "6a509f47-8e7f-4b04-b349-a55bdb45dc6f",
+    "typeAuthorization": "NO_AUTH",
+    "body": "",
+    "typeBody": "NONE",
+    "typeResponseBody": "NONE"
+  },
+  {
+    "id": "6a509f47-8e7f-4b04-b349-a55bdb45dc6f",
+    "name": "New FOLDER1235325123",
+    "typeRequest": "FOLDER",
+    "request": "",
+    "headers": [],
+    "parent": "1d689cf0-8b5a-4aec-a050-0a4c09e8a4d9",
+    "typeAuthorization": "NO_AUTH",
+    "body": ""
+  },
+  {
+    "id": "1d689cf0-8b5a-4aec-a050-0a4c09e8a4d9",
+    "name": "new Folder 4.4",
+    "typeRequest": "FOLDER",
+    "parent": "f896f634-7df0-4e1a-96a1-8f98773b6380"
+  },
+  {
+    "id": "f896f634-7df0-4e1a-96a1-8f98773b6380",
+    "name": "new Collection 4",
+    "typeRequest": "COLLECTIONS"
+  },
+  {
+    "id": "1a6f0d9a-892f-47e7-bf05-2726398e6181",
+    "requestMethod": "GET",
+    "name": "New REQUEST test for import",
+    "typeRequest": "REQUEST",
+    "request": "",
+    "headers": [],
+    "parent": "36b16b06-a8c1-4e46-85f8-99f3976144c9",
+    "typeAuthorization": "NO_AUTH",
+    "body": "",
+    "typeBody": "NONE",
+    "typeResponseBody": "NONE"
+  },
+  {
+    "id": "36b16b06-a8c1-4e46-85f8-99f3976144c9",
+    "name": "New FOLDER 123.5.1",
+    "typeRequest": "FOLDER",
+    "request": "",
+    "headers": [],
+    "parent": "97ac917a-fa4d-492b-9ffa-cc45eee1b0ae",
+    "body": ""
+  },
+  {
+    "id": "7fc3104d-3c31-49ff-b54f-adda1469936f",
+    "requestMethod": "POST",
+    "name": "New REQUEST 123.5.1.1 test",
+    "typeRequest": "REQUEST",
+    "request": "{Test}/auth",
+    "headers": [
+      "content-type:application/json",
+      "accept:application/json"
+    ],
+    "parent": "e7754566-84e1-4582-9282-7006976003f4",
+    "typeAuthorization": "NO_AUTH",
+    "body": "{\"username\":\"testlogin\",\"password\":\"testlogin\", \"scheme\" : \"custom\"}",
+    "typeBody": "JSON",
+    "typeResponseBody": "XML"
+  },
+  {
+    "id": "401b90e7-fe6a-4fa7-81c4-905d4a5cd338",
+    "requestMethod": "GET",
+    "name": "New REQUEST GET запрос после ключа",
+    "typeRequest": "REQUEST",
+    "request": "http://rnd-stamp-tst.gloria.aaanet.ru:8040/api/KMInfo/GetByLot?lot_id\u003d320225722503",
+    "headers": [],
+    "parent": "e7754566-84e1-4582-9282-7006976003f4",
+    "typeAuthorization": "BEARER_TOKEN",
+    "body": "",
+    "typeBody": "NONE",
+    "typeResponseBody": "JSON"
+  },
+  {
+    "id": "a12a6a1e-9dcd-4d5f-9a4e-6fd6938ff07d",
+    "requestMethod": "GET",
+    "name": "Получение списка статусов по данной km",
+    "typeRequest": "REQUEST",
+    "request": "http://rnd-stamp-tst.gloria.aaanet.ru:8040/api/KM/GetKMFull?km\u003d{km}",
+    "headers": [],
+    "parent": "e7754566-84e1-4582-9282-7006976003f4",
+    "typeAuthorization": "BEARER_TOKEN",
+    "authToken": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNyc2Etc2hhMjU2IiwidHlwIjoiSldUIn0.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiemhldmFraW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6InpoZXZha2luIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvYXV0aGVudGljYXRpb24iOiJEb21haW4iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJ6aGV2YWtpbkBnbG9yaWEtamVhbnMucnUiLCJFbW5sb3llZUlkIjoi0J7QkNCeMDAwMDEwNjg2MyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3g1MDBkaXN0aW5ndWlzaGVkbmFtZSI6IkNOPVpoZXZha2luIERtaXRyaXkgKNCW0LXQstCw0LrQuNC9INCU0LzQuNGC0YDQuNC5INCc0LjRhdCw0LnQu9C-0LLQuNGHKSxPVT1Sb3N0b3YgVXNlcnMsT1U9Um9zdG92LW9uLURvbixPVT1EZXBhcnRtZW50cyxEQz1nbG9yaWEsREM9YWFhbmV0LERDPXJ1IiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbInVzZXJhZG1pbiIsInNsY2FkbWluIiwibWFya29wZXJhdG9yIiwibWFya2NyeXB0byIsInNsY3Jvem4iXSwibmJmIjoxNjM0MDUxNjY5LCJleHAiOjE2MzQwNTM0NjksImlzcyI6ImNhcy5nbG9yaWEtamVhbnMucnUiLCJhdWQiOiJnbG9yaWEtamVhbnMucnUifQ.eJdJIXibJ0idC-FOTo6qhS_-hppVaBv8h1xXuFbqtOfNa6hIqMWSeN6BoZVnhbgvAIrupFUt63NQBdF7lSb5EK_JZOy2LeOFkGOyytt70PsztQW1fnV1wQqGA6NzTVdalUuve24F7lCJR8_MsYVnQK77NSsQJaTPvsxpbELaNJj7bsKvx5UjXRChX-_0gnIVm1hN2cUN6_lV4U2ihz17_A0W_RPyJGCba82AIYRWFK1knLJZw0MPwPUdQdFVJuw0TVUjD6Qt1dgknHy_JTfqm2vQlj7LZoRICpTIUcPhGSAKQzikJcBN3qt0WX9W4siHrUmBGf8HTCVHQTegT2pAyQ",
+    "body": "",
+    "typeBody": "NONE",
+    "typeResponseBody": "JSON"
+  },
+  {
+    "id": "e7754566-84e1-4582-9282-7006976003f4",
+    "name": "New FOLDERS 123.5.2",
+    "typeRequest": "FOLDER",
+    "request": "",
+    "headers": [],
+    "parent": "97ac917a-fa4d-492b-9ffa-cc45eee1b0ae",
+    "body": ""
+  },
+  {
+    "id": "97ac917a-fa4d-492b-9ffa-cc45eee1b0ae",
+    "name": "New FOLDER 123.5",
+    "typeRequest": "FOLDER",
+    "request": "",
+    "headers": [],
+    "parent": "ef300b50-50e7-4170-8911-f8e48a835a0f",
+    "body": ""
+  },
+  {
+    "id": "ef300b50-50e7-4170-8911-f8e48a835a0f",
+    "name": "New COLLECTIONS 123",
+    "typeRequest": "COLLECTIONS",
+    "request": "",
+    "headers": [],
+    "body": ""
+  }
+]

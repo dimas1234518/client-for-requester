@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="647.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zhevakin.requester.front.controller.MainController">
+
+    <SplitPane dividerPositions="0.0696629213483146, 0.8606741573033708" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <items>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <TreeView fx:id="requestTree" layoutX="-29.0" layoutY="50.0" prefHeight="460.0" prefWidth="62.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            </children></AnchorPane>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="178.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                 <items>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                            <Button fx:id="sendButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="347.0" layoutY="44.0" onAction="#send" AnchorPane.rightAnchor="10.0">Send</Button>
+                           <ComboBox fx:id="methodComboBox" layoutX="5.0" layoutY="44.0" prefHeight="26.0" prefWidth="71.0" />
+                           <TextField fx:id="requestTextField" layoutX="90.0" layoutY="44.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="288.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="66.0" />
+                           <TabPane layoutX="41.0" layoutY="85.0" prefHeight="154.0" prefWidth="434.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="82.0">
+                             <tabs>
+                               <Tab text="Params">
+                                 <content>
+                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <children>
+                                             <GridPane fx:id="paramsGrid" gridLinesVisible="true" layoutX="30.0" layoutY="17.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                               <columnConstraints>
+                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                               </columnConstraints>
+                                             </GridPane>
+                                          </children>
+                                       </AnchorPane>
+                                 </content>
+                               </Tab>
+                               <Tab text="Headers">
+                                 <content>
+                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <children>
+                                             <GridPane fx:id="headersGrid" gridLinesVisible="true" layoutX="-14.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                               <columnConstraints>
+                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                               </columnConstraints>
+                                             </GridPane>
+                                          </children>
+                                       </AnchorPane>
+                                 </content>
+                               </Tab>
+                                 <Tab text="Body">
+                                     <content>
+                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <children>
+                                             <ComboBox fx:id="requestTextModeComboBox" prefWidth="150.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                             <TextArea fx:id="requestBody" layoutX="-17.0" layoutY="-56.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
+                                          </children></AnchorPane>
+                                     </content>
+                                 </Tab>
+                             </tabs>
+                           </TabPane>
+                        </children>
+                     </AnchorPane>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="121.0" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                           <TabPane layoutX="47.0" layoutY="16.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+                             <tabs>
+                               <Tab text="Body">
+                                 <content>
+                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                          <children>
+                                             <TextArea fx:id="responseBody" editable="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="35.0" />
+                                             <ComboBox fx:id="responseTextModeComboBox" layoutX="279.0" layoutY="2.0" prefWidth="150.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                          </children></AnchorPane>
+                                 </content>
+                               </Tab>
+                               <Tab text="Headers">
+                                 <content>
+                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 </content>
+                               </Tab>
+                             </tabs>
+                           </TabPane>
+                           <Label fx:id="statusLabel" layoutX="-79.0" layoutY="7.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="432.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                        </children>
+                     </AnchorPane>
+                 </items>
+               </SplitPane>
+            </children>
+         </AnchorPane>
+         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="148.0">
+            <children>
+               <ComboBox fx:id="environmentComboBox" layoutX="-37.0" layoutY="42.0" maxWidth="1.7976931348623157E308" prefWidth="150.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+               <Button fx:id="showEnvironmentButton" alignment="CENTER_RIGHT" layoutX="50.0" layoutY="5.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#showEnvironments" text="Edit" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+            </children></AnchorPane>
+     </items>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+   </SplitPane>
+    <MenuBar>
+        <Menu fx:id="fileMenu" text="File">
+            <MenuItem fx:id="importMenuItem" onAction="#makeImport" text="Import" />
+        </Menu>
+    </MenuBar>
+   <Label fx:id="currentUserLabel" layoutX="500.0" layoutY="4.0" text="Label" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="5.0" />
+   <Button fx:id="statusButton" layoutX="436.0" maxHeight="16.0" maxWidth="16.0" minHeight="16.0" minWidth="16.0" mnemonicParsing="false" onAction="#refreshStatus" prefHeight="16.0" prefWidth="16.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="5.0" />
+</AnchorPane>
