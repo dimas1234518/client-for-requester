@@ -35,6 +35,16 @@ import java.util.*;
 public class MainController {
 
     @FXML
+    private TabPane mainTabPane;
+    @FXML
+    private Tab paramsTab;
+    @FXML
+    private Tab headersTab;
+
+    @FXML
+    private Tab bodyTab;
+
+    @FXML
     private Button statusButton;
     @FXML
     private MenuItem importMenuItem;
@@ -77,6 +87,7 @@ public class MainController {
     List<RequestInfo> requests;
     List<Environment> environments;
     List<Stage> openStages = new ArrayList<>();
+    List<Tab> tabs = new ArrayList<>();
 
     private final Sender sender;
     private final Import importer;
@@ -133,6 +144,10 @@ public class MainController {
 
     public void start() {
 
+        tabs.add(paramsTab);
+        tabs.add(headersTab);
+        tabs.add(bodyTab);
+
         statusButton.setOnMouseEntered(mouseEvent -> { IconGenerator.setRefreshIcon(statusButton); });
         statusButton.setOnMouseExited(mouseEvent -> {IconGenerator.setStatusIcon(statusButton, syncFacade.isConnected());});
 
@@ -148,7 +163,7 @@ public class MainController {
         // Заполнение дерева
         requests = importer.loadRequests();
         environments = importer.loadEnvironments();
-        treeGenerator.fillTree(requestTree, requests);
+        treeGenerator.fillTree(requestTree, requests, tabs, mainTabPane);
 
         //Заполнение ComboBox
         environmentComboBox.setItems(FXCollections.observableArrayList(environments));
@@ -246,7 +261,7 @@ public class MainController {
             environments = syncFacade.syncEnvironments();
             importer.saveEnvironments(environments);
             importer.saveRequests(requests);
-            treeGenerator.fillTree(requestTree, requests);
+            treeGenerator.fillTree(requestTree, requests, tabs, mainTabPane);
         }
     }
 }

@@ -5,9 +5,7 @@ import com.zhevakin.requester.model.RequestInfo;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +31,7 @@ public class TreeGenerator {
         treeView.setShowRoot(false);
     }
 
-    private void handleMouseClicked(MouseEvent event, TreeView<RequestInfo> treeView) {
+    private void handleMouseClicked(MouseEvent event, TreeView<RequestInfo> treeView, List<Tab> tabs, TabPane tabPane) {
         // TODO: перенаследоваться от CellFactory и сделать нормальный обработчик событий
         Node node = event.getPickResult().getIntersectedNode();
         // Accept clicks only on node cells, and not on empty spaces of the TreeView
@@ -42,9 +40,25 @@ public class TreeGenerator {
             treeView.setContextMenu(contextMenuGenerator.generateMenu(requestInfo, treeView));
             System.out.println(requestInfo.toString());
         }
+
+        if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null) && event.isPrimaryButtonDown()) {
+            RequestInfo requestInfo = treeView.getSelectionModel().getSelectedItem().getValue();
+            switch (requestInfo.getTypeRequest()) {
+                case COLLECTIONS:
+                case FOLDER: {
+                    tabPane.getTabs().removeAll(tabs);
+                    break;
+                }
+                case REQUEST: {
+                    tabPane.getTabs().addAll(tabs);
+                    break;
+                }
+            }
+         }
+
     }
 
-    public void fillTree(TreeView<RequestInfo> treeView, List<RequestInfo> requestsInfo) {
+    public void fillTree(TreeView<RequestInfo> treeView, List<RequestInfo> requestsInfo, List<Tab> tabs, TabPane tabPane) {
 
         List<RequestInfo> collections = new ArrayList<>();
         List<RequestInfo> folders = new ArrayList<>();
@@ -82,7 +96,7 @@ public class TreeGenerator {
             treeParser(root, temp);
 
         EventHandler<MouseEvent> mouseEventHandler = (MouseEvent event) -> {
-            handleMouseClicked(event, treeView);
+            handleMouseClicked(event, treeView, tabs, tabPane);
         };
 
 //        treeView.addEventHandler(DragEvent.);

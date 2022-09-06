@@ -82,7 +82,7 @@
   },
   {
     "id": "feeb844f-1630-465b-b2f6-471d76b5adf4",
-    "requestMethod": "GET",
+    "requestMethod": "PATCH",
     "name": "New REQUEST",
     "typeRequest": "REQUEST",
     "request": "",
@@ -116,7 +116,7 @@
   },
   {
     "id": "1a6f0d9a-892f-47e7-bf05-2726398e6181",
-    "requestMethod": "GET",
+    "requestMethod": "PUT",
     "name": "New REQUEST test for import",
     "typeRequest": "REQUEST",
     "request": "",
@@ -154,7 +154,7 @@
   },
   {
     "id": "401b90e7-fe6a-4fa7-81c4-905d4a5cd338",
-    "requestMethod": "GET",
+    "requestMethod": "OPTIONS",
     "name": "New REQUEST GET запрос после ключа",
     "typeRequest": "REQUEST",
     "request": "http://rnd-stamp-tst.gloria.aaanet.ru:8040/api/KMInfo/GetByLot?lot_id\u003d320225722503",
@@ -167,7 +167,7 @@
   },
   {
     "id": "a12a6a1e-9dcd-4d5f-9a4e-6fd6938ff07d",
-    "requestMethod": "GET",
+    "requestMethod": "TRACE",
     "name": "Получение списка статусов по данной km",
     "typeRequest": "REQUEST",
     "request": "http://rnd-stamp-tst.gloria.aaanet.ru:8040/api/KM/GetKMFull?km\u003d{km}",

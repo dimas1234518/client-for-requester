@@ -17,7 +17,7 @@ public class IconGenerator {
     private final static String RESOURCE_PROJECT = "/src/main/resources/images";
     private final static String DIR_PROJECT = System.getProperties().get("user.dir").toString() + RESOURCE_PROJECT;
     private final static String COLLECTION_IMAGE = DIR_PROJECT + "/Collection" + FORMAT;
-    private final static String REQUEST_IMAGE = DIR_PROJECT + "/Request" + FORMAT;
+    private final static String NONE_IMAGE = DIR_PROJECT + "/NONE" + FORMAT;
     private final static String FOLDER_IMAGE = DIR_PROJECT + "/Folder" + FORMAT;
     private final static String SUCCESS_IMAGE = DIR_PROJECT + "/Success" + FORMAT;
     private final static String FAILED_IMAGE = DIR_PROJECT + "/Failed" + FORMAT;
@@ -54,7 +54,7 @@ public class IconGenerator {
 
     private static void setRequestIcon(TreeItem<RequestInfo> treeItem) {
         String enumName;
-        if (treeItem.getValue().getRequestMethod() == null) enumName = REQUEST_IMAGE;
+        if (treeItem.getValue().getRequestMethod() == null) enumName = NONE_IMAGE;
         else enumName = DIR_PROJECT + "/" + treeItem.getValue().getRequestMethod().toString() + FORMAT;
         try {
             InputStream inputStream;

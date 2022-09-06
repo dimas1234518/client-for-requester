@@ -21,9 +21,9 @@
                             <Button fx:id="sendButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="347.0" layoutY="44.0" onAction="#send" AnchorPane.rightAnchor="10.0">Send</Button>
                            <ComboBox fx:id="methodComboBox" layoutX="5.0" layoutY="44.0" prefHeight="26.0" prefWidth="71.0" />
                            <TextField fx:id="requestTextField" layoutX="90.0" layoutY="44.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="288.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="66.0" />
-                           <TabPane layoutX="41.0" layoutY="85.0" prefHeight="154.0" prefWidth="434.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="82.0">
+                           <TabPane fx:id="mainTabPane" layoutX="41.0" layoutY="85.0" prefHeight="154.0" prefWidth="434.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="82.0">
                              <tabs>
-                               <Tab text="Params">
+                               <Tab fx:id="paramsTab" text="Params">
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
@@ -37,7 +37,7 @@
                                        </AnchorPane>
                                  </content>
                                </Tab>
-                               <Tab text="Headers">
+                               <Tab fx:id="headersTab" text="Headers">
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
@@ -51,7 +51,7 @@
                                        </AnchorPane>
                                  </content>
                                </Tab>
-                                 <Tab text="Body">
+                                 <Tab fx:id="bodyTab" text="Body">
                                      <content>
                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                           <children>
