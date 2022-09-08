@@ -18,13 +18,15 @@ import java.util.List;
 public class TreeGenerator {
 
     private final ContextMenuGenerator contextMenuGenerator;
+    private static MainController mainController;
 
     @Autowired
     public TreeGenerator(ContextMenuGenerator contextMenuGenerator) {
         this.contextMenuGenerator = contextMenuGenerator;
     }
 
-    public static void createTree(MainController mainController) {
+    public static void createTree(MainController main) {
+        mainController = main;
         TreeView<RequestInfo> treeView = mainController.getRequestTree();
         TreeItem<RequestInfo> treeItem = new TreeItem<>(null);
         treeView.setRoot(treeItem);
@@ -46,14 +48,21 @@ public class TreeGenerator {
             switch (requestInfo.getTypeRequest()) {
                 case COLLECTIONS:
                 case FOLDER: {
-                    tabPane.getTabs().removeAll(tabs);
+                    if (tabPane.getTabs().size() != 1) {
+                        for (int i = 1; i < tabs.size(); i++) tabPane.getTabs().remove(1);
+                    }
                     break;
                 }
                 case REQUEST: {
-                    tabPane.getTabs().addAll(tabs);
+                    if (tabPane.getTabs().size() == 1) {
+                        for (int i = 1; i < tabs.size(); i++) {
+                            tabPane.getTabs().add(tabs.get(i));
+                        }
+                    }
                     break;
                 }
             }
+            mainController.setCurrentRequest(requestInfo);
          }
 
     }

@@ -7,6 +7,7 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -27,10 +28,10 @@ public class SenderImpl implements Sender {
             answer.setBody(response.getBody());
             answer.setHttpStatus(response.getStatusCode());
             answer.setHeaders(response.getHeaders());
-        } catch (HttpClientErrorException exception) {
+        } catch (RestClientException exception) {
 
             answer.setBody(exception.getMessage());
-            answer.setHttpStatus(exception.getStatusCode());
+            answer.setHttpStatus(HttpStatus.FORBIDDEN);
             answer.setHeaders(new HashMap<>());
 
         }

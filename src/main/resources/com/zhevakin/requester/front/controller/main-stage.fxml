@@ -19,10 +19,18 @@
                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                             <Button fx:id="sendButton" alignment="BOTTOM_RIGHT" contentDisplay="RIGHT" layoutX="347.0" layoutY="44.0" onAction="#send" AnchorPane.rightAnchor="10.0">Send</Button>
-                           <ComboBox fx:id="methodComboBox" layoutX="5.0" layoutY="44.0" prefHeight="26.0" prefWidth="71.0" />
-                           <TextField fx:id="requestTextField" layoutX="90.0" layoutY="44.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="288.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="66.0" />
+                           <ComboBox fx:id="methodComboBox" layoutX="5.0" layoutY="44.0" prefHeight="26.0" prefWidth="100.0" />
+                           <TextField fx:id="requestTextField" layoutX="90.0" layoutY="44.0" maxWidth="1.7976931348623157E308" prefHeight="26.0" prefWidth="288.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="66.0" />
                            <TabPane fx:id="mainTabPane" layoutX="41.0" layoutY="85.0" prefHeight="154.0" prefWidth="434.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="82.0">
                              <tabs>
+                                 <Tab fx:id="authTab" text="Authorization">
+                                     <content>
+                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                             <children>
+                                             </children>
+                                         </AnchorPane>
+                                     </content>
+                                 </Tab>
                                <Tab fx:id="paramsTab" text="Params">
                                  <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -62,6 +70,7 @@
                                  </Tab>
                              </tabs>
                            </TabPane>
+                           <Label fx:id="nameLabel" layoutX="14.0" layoutY="14.0" text="Label" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                         </children>
                      </AnchorPane>
                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="121.0" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

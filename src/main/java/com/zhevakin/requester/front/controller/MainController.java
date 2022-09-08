@@ -35,6 +35,8 @@ import java.util.*;
 public class MainController {
 
     @FXML
+    private Tab authTab;
+    @FXML
     private TabPane mainTabPane;
     @FXML
     private Tab paramsTab;
@@ -57,6 +59,8 @@ public class MainController {
 
     @FXML
     private Label currentUserLabel;
+    @FXML
+    private Label nameLabel;
     @FXML
     private Button showEnvironmentButton;
     @FXML
@@ -97,6 +101,7 @@ public class MainController {
     private final TreeGenerator treeGenerator;
     private FxWeaver fxWeaver;
     private final String ENVIRONMENTS = "Environments";
+    private RequestInfo currentRequestInfo;
 
     public void setFxWeaver(FxWeaver fxWeaver) {
         this.fxWeaver = fxWeaver;
@@ -144,6 +149,7 @@ public class MainController {
 
     public void start() {
 
+        tabs.add(authTab);
         tabs.add(paramsTab);
         tabs.add(headersTab);
         tabs.add(bodyTab);
@@ -162,6 +168,7 @@ public class MainController {
 
         // Заполнение дерева
         requests = importer.loadRequests();
+        if (requests.size() != 0) setCurrentRequest(requests.get(0));
         environments = importer.loadEnvironments();
         treeGenerator.fillTree(requestTree, requests, tabs, mainTabPane);
 
@@ -185,6 +192,29 @@ public class MainController {
         environmentStage.setScene(scene);
         environmentStage.setTitle(ENVIRONMENTS);
         openStages.add(environmentStage);
+
+
+    }
+
+    public void setCurrentRequest(RequestInfo requestInfo) {
+
+        this.currentRequestInfo = requestInfo;
+        if (currentRequestInfo.getTypeRequest() == TypeRequest.REQUEST) {
+            methodComboBox.setValue(currentRequestInfo.getRequestMethod());
+            requestTextField.setText(currentRequestInfo.getRequest());
+            if (currentRequestInfo.getTypeBody() != null) requestTextModeComboBox.setValue(currentRequestInfo.getTypeBody());
+            else requestTextModeComboBox.setValue(TextMode.NONE);
+            if (currentRequestInfo.getTypeResponseBody() != null) responseTextModeComboBox.setValue(currentRequestInfo.getTypeResponseBody());
+            else responseTextModeComboBox.setValue(TextMode.NONE);
+            requestBody.setText(currentRequestInfo.getBody());
+
+            // Заполнение Params
+
+            // Заполнение Headers
+
+        }
+
+        nameLabel.setText(requestInfo.getName());
 
 
     }

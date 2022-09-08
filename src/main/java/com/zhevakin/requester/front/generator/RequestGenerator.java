@@ -1,5 +1,6 @@
 package com.zhevakin.requester.front.generator;
 
+import com.zhevakin.requester.enums.TextMode;
 import com.zhevakin.requester.enums.TypeRequest;
 import com.zhevakin.requester.model.RequestInfo;
 import org.springframework.http.HttpMethod;
@@ -12,6 +13,9 @@ public class RequestGenerator {
         requestInfo.setName("New Request");
         requestInfo.setTypeRequest(TypeRequest.REQUEST);
         requestInfo.setRequestMethod(HttpMethod.GET);
+        requestInfo.setTypeResponseBody(TextMode.NONE);
+        requestInfo.setTypeBody(TextMode.NONE);
+
         return requestInfo;
 
     }
