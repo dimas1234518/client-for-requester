@@ -5,9 +5,6 @@ import com.zhevakin.requester.model.Answer;
 import com.zhevakin.requester.sender.Sender;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -21,21 +18,24 @@ public class SenderImpl implements Sender {
                        HttpMethod httpMethod, String body) {
 
         Answer answer = new Answer();
+        final RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response;
         try {
-            final RestTemplate restTemplate = new RestTemplate();
             HttpEntity<String> entity = new HttpEntity<>(body, getHeaders(headers));
-            ResponseEntity<String> response = restTemplate.exchange(makeUrl(url, params), httpMethod, entity, String.class);
+            switch (httpMethod) {
+                case GET: response = restTemplate.getForEntity(makeUrl(url,params), String.class); break;
+                case POST: response = restTemplate.postForEntity(makeUrl(url, params), entity, String.class); break;
+                default: response = restTemplate.exchange(makeUrl(url, params), httpMethod ,entity, String.class);
+            }
+        //    ResponseEntity<String> response = restTemplate.exchange(makeUrl(url, params), httpMethod, entity, String.class);
             answer.setBody(response.getBody());
             answer.setHttpStatus(response.getStatusCode());
             answer.setHeaders(response.getHeaders());
-        } catch (RestClientException exception) {
-
-            answer.setBody(exception.getMessage());
+        } catch (Exception e) {
+            answer.setBody(e.getMessage());
             answer.setHttpStatus(HttpStatus.FORBIDDEN);
             answer.setHeaders(new HashMap<>());
-
         }
-
         return answer;
 
 

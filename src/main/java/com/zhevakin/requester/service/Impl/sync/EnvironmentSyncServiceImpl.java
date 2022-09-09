@@ -77,17 +77,15 @@ public class EnvironmentSyncServiceImpl implements EnvironmentSyncService {
         String method = "/";
         Map<String,String> headers = new HashMap<>();
         Map<String,String> params  = new HashMap<>();
-
+        String body = JsonConverter.getJsonFromObject(environments);
         headers.put("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
 
-        Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST,
-                                                                                "");
+        Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST, body);
 
         if (answer.getHttpStatus() == HttpStatus.FORBIDDEN) {
             authSyncService.syncInService();
             headers.replace("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
-            answer = sender.send(server + API, headers, params, HttpMethod.GET,
-                                                    JsonConverter.getJsonFromObject(environments, Environment[].class));
+            answer = sender.send(server + API, headers, params, HttpMethod.POST, body);
             if (answer.getHttpStatus() != HttpStatus.OK) return false;
         }
         return answer.getHttpStatus() == HttpStatus.OK;
@@ -101,17 +99,15 @@ public class EnvironmentSyncServiceImpl implements EnvironmentSyncService {
 
         List<Environment> environments = new ArrayList<>();
         environments.add(environment);
-
+        String body = JsonConverter.getJsonFromObject(environments);
         headers.put("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
 
-        Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST,
-                                                                    JsonConverter.getJsonFromObject(environments, Environment[].class));
+        Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST, body);
 
         if (answer.getHttpStatus() == HttpStatus.FORBIDDEN) {
             authSyncService.syncInService();
             headers.replace("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
-            answer = sender.send(server + API, headers, params, HttpMethod.GET,
-                                                        JsonConverter.getJsonFromObject(environments, Environment[].class));
+            answer = sender.send(server + API, headers, params, HttpMethod.POST, body);
             if (answer.getHttpStatus() != HttpStatus.OK) return false;
         }
         return answer.getHttpStatus() == HttpStatus.OK;

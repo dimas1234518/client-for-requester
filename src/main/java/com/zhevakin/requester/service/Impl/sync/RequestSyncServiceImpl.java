@@ -91,16 +91,15 @@ public class RequestSyncServiceImpl implements RequestSyncService {
         String method = "/";
         Map<String,String> headers = new HashMap<>();
         Map<String,String> params  = new HashMap<>();
-
+        String body = JsonConverter.getJsonFromObject(requests);
         headers.put("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
 
-        Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST, "");
+        Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST, body);
 
         if (answer.getHttpStatus() == HttpStatus.FORBIDDEN) {
             authSyncService.syncInService();
             headers.replace("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
-            answer = sender.send(server + API, headers, params, HttpMethod.POST,
-                    JsonConverter.getJsonFromObject(requests, RequestInfo[].class));
+            answer = sender.send(server + API + method, headers, params, HttpMethod.POST, body);
             if (answer.getHttpStatus() != HttpStatus.OK) return false;
         }
         return answer.getHttpStatus() == HttpStatus.OK;

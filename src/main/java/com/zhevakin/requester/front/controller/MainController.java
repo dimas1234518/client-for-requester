@@ -6,6 +6,7 @@ import com.zhevakin.requester.enums.TypeRequest;
 import com.zhevakin.requester.facade.SyncFacade;
 import com.zhevakin.requester.front.generator.GridGenerator;
 import com.zhevakin.requester.front.generator.IconGenerator;
+import com.zhevakin.requester.front.generator.RequestGenerator;
 import com.zhevakin.requester.front.generator.TreeGenerator;
 import com.zhevakin.requester.model.Answer;
 import com.zhevakin.requester.model.CurrentUser;
@@ -169,13 +170,24 @@ public class MainController {
 
         syncFacade.setUser(currentUser);
 
+        RequestInfo requestInfo = RequestGenerator.createRequest();
+        Map<String, String> heads = new HashMap<>();
+        heads.put("1", "head1");
+        heads.put("2", "heads2");
+        requestInfo.setHeaders(heads);
+        requests.add(requestInfo);
+        requestInfo = RequestGenerator.createRequest();
+        requests.add(requestInfo);
+        requestInfo = RequestGenerator.createFolder();
+        requests.add(requestInfo);
+        importer.saveRequests(requests);
 
         // Заполнение дерева
         requests = importer.loadRequests();
         if (requests.size() != 0) setCurrentRequest(requests.get(0));
         environments = importer.loadEnvironments();
         treeGenerator.fillTree(requestTree, requests, tabs, mainTabPane);
-
+        syncFacade.saveRequests(requests);
         //Заполнение ComboBox
         environmentComboBox.setItems(FXCollections.observableArrayList(environments));
         environmentComboBox.setValue(environments.get(0));
