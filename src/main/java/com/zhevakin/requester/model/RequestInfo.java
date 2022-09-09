@@ -8,6 +8,7 @@ import lombok.Setter;
 import org.springframework.http.HttpMethod;
 
 import java.util.Date;
+import java.util.Map;
 import java.util.UUID;
 
 @Getter
@@ -20,6 +21,7 @@ public class RequestInfo {
     private TypeRequest typeRequest;
     private String request;
     private String parent;
+    private Map<String, String> headers;
     //private final String fullRequest;
     private TypeAuthorization typeAuthorization;
     private String authToken;

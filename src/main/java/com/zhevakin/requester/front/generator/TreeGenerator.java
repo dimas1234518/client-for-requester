@@ -33,7 +33,7 @@ public class TreeGenerator {
         treeView.setShowRoot(false);
     }
 
-    private void handleMouseClicked(MouseEvent event, TreeView<RequestInfo> treeView, List<Tab> tabs, TabPane tabPane) {
+    private void handleMouseClicked(MouseEvent event, TreeView<RequestInfo> treeView) {
         // TODO: перенаследоваться от CellFactory и сделать нормальный обработчик событий
         Node node = event.getPickResult().getIntersectedNode();
         // Accept clicks only on node cells, and not on empty spaces of the TreeView
@@ -45,23 +45,6 @@ public class TreeGenerator {
 
         if (node instanceof Text || (node instanceof TreeCell && ((TreeCell) node).getText() != null) && event.isPrimaryButtonDown()) {
             RequestInfo requestInfo = treeView.getSelectionModel().getSelectedItem().getValue();
-            switch (requestInfo.getTypeRequest()) {
-                case COLLECTIONS:
-                case FOLDER: {
-                    if (tabPane.getTabs().size() != 1) {
-                        for (int i = 1; i < tabs.size(); i++) tabPane.getTabs().remove(1);
-                    }
-                    break;
-                }
-                case REQUEST: {
-                    if (tabPane.getTabs().size() == 1) {
-                        for (int i = 1; i < tabs.size(); i++) {
-                            tabPane.getTabs().add(tabs.get(i));
-                        }
-                    }
-                    break;
-                }
-            }
             mainController.setCurrentRequest(requestInfo);
          }
 
@@ -105,7 +88,7 @@ public class TreeGenerator {
             treeParser(root, temp);
 
         EventHandler<MouseEvent> mouseEventHandler = (MouseEvent event) -> {
-            handleMouseClicked(event, treeView, tabs, tabPane);
+            handleMouseClicked(event, treeView);
         };
 
 //        treeView.addEventHandler(DragEvent.);

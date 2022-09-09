@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static com.zhevakin.requester.front.generator.TextFieldGenerator.textFieldListener;
 
@@ -106,7 +107,28 @@ public class GridGenerator {
         }
     }
 
-    public void feelParamsGrid(String oldUrl, String url, MainController mainController) {
+    public void fillHeadersGrid(Map<String,String> headers, GridPane gridPane) {
+
+        String[] headersGrid = new String[]{"Key", "Value"};
+        createGrid(headersGrid, gridPane);
+
+        int index = 1;
+
+        for (Map.Entry<String,String> pair : headers.entrySet()) {
+            Node[] nodes = new Node[2];
+            nodes[0] = createCellNode(pair.getKey());
+            nodes[1] = createCellNode(pair.getValue());
+
+            for (int j = 0; j < nodes.length; j++) {
+                gridPane.add(nodes[j], j, index);
+            }
+
+            index++;
+        }
+
+    }
+
+    public void fillParamsGrid(String oldUrl, String url, MainController mainController) {
 
         GridPane gridPane = mainController.getParamsGrid();
 

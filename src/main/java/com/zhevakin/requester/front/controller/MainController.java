@@ -4,6 +4,7 @@ import com.zhevakin.requester.additional.Import;
 import com.zhevakin.requester.enums.TextMode;
 import com.zhevakin.requester.enums.TypeRequest;
 import com.zhevakin.requester.facade.SyncFacade;
+import com.zhevakin.requester.front.generator.GridGenerator;
 import com.zhevakin.requester.front.generator.IconGenerator;
 import com.zhevakin.requester.front.generator.TreeGenerator;
 import com.zhevakin.requester.model.Answer;
@@ -99,6 +100,7 @@ public class MainController {
     private EnvironmentController environmentController;
     private final PropertyService propertyService;
     private final TreeGenerator treeGenerator;
+    private final GridGenerator gridGenerator;
     private FxWeaver fxWeaver;
     private final String ENVIRONMENTS = "Environments";
     private RequestInfo currentRequestInfo;
@@ -112,12 +114,14 @@ public class MainController {
     }
 
     @Autowired
-    public MainController(Sender sender, Import importer, SyncFacade syncFacade, PropertyService propertyService, TreeGenerator treeGenerator) {
+    public MainController(Sender sender, Import importer, SyncFacade syncFacade, PropertyService propertyService,
+                          TreeGenerator treeGenerator, GridGenerator gridGenerator) {
         this.sender = sender;
         this.importer = importer;
         this.syncFacade = syncFacade;
         this.propertyService = propertyService;
         this.treeGenerator = treeGenerator;
+        this.gridGenerator = gridGenerator;
         requests = new ArrayList<>();
         environments = new ArrayList<>();
     }
@@ -199,22 +203,47 @@ public class MainController {
     public void setCurrentRequest(RequestInfo requestInfo) {
 
         this.currentRequestInfo = requestInfo;
-        if (currentRequestInfo.getTypeRequest() == TypeRequest.REQUEST) {
-            methodComboBox.setValue(currentRequestInfo.getRequestMethod());
-            requestTextField.setText(currentRequestInfo.getRequest());
-            if (currentRequestInfo.getTypeBody() != null) requestTextModeComboBox.setValue(currentRequestInfo.getTypeBody());
-            else requestTextModeComboBox.setValue(TextMode.NONE);
-            if (currentRequestInfo.getTypeResponseBody() != null) responseTextModeComboBox.setValue(currentRequestInfo.getTypeResponseBody());
-            else responseTextModeComboBox.setValue(TextMode.NONE);
-            requestBody.setText(currentRequestInfo.getBody());
+        nameLabel.setText(requestInfo.getName());
 
-            // Заполнение Params
+        switch (requestInfo.getTypeRequest()) {
+            case COLLECTIONS:
+            case FOLDER: {
+                if (mainTabPane.getTabs().size() != 1) {
+                    for (int i = 1; i < tabs.size(); i++) mainTabPane.getTabs().remove(1);
+                }
 
-            // Заполнение Headers
+                methodComboBox.setVisible(false);
+                requestTextField.setVisible(false);
+                sendButton.setVisible(false);
 
+                break;
+            }
+            case REQUEST: {
+                if (mainTabPane.getTabs().size() == 1) {
+                    for (int i = 1; i < tabs.size(); i++) {
+                        mainTabPane.getTabs().add(tabs.get(i));
+                    }
+                }
+                methodComboBox.setVisible(true);
+                methodComboBox.setValue(currentRequestInfo.getRequestMethod());
+                requestTextField.setVisible(true);
+                requestTextField.setText(currentRequestInfo.getRequest());
+                sendButton.setVisible(true);
+
+                if (currentRequestInfo.getTypeBody() != null) requestTextModeComboBox.setValue(currentRequestInfo.getTypeBody());
+                else requestTextModeComboBox.setValue(TextMode.NONE);
+
+                if (currentRequestInfo.getTypeResponseBody() != null) responseTextModeComboBox.setValue(currentRequestInfo.getTypeResponseBody());
+                else responseTextModeComboBox.setValue(TextMode.NONE);
+                requestBody.setText(currentRequestInfo.getBody());
+
+
+                gridGenerator.fillHeadersGrid(requestInfo.getHeaders(), headersGrid);
+
+                break;
+            }
         }
 
-        nameLabel.setText(requestInfo.getName());
 
 
     }

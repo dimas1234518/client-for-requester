@@ -5,6 +5,8 @@ import com.zhevakin.requester.enums.TypeRequest;
 import com.zhevakin.requester.model.RequestInfo;
 import org.springframework.http.HttpMethod;
 
+import java.util.HashMap;
+
 public class RequestGenerator {
 
     public static RequestInfo createRequest() {
@@ -15,6 +17,7 @@ public class RequestGenerator {
         requestInfo.setRequestMethod(HttpMethod.GET);
         requestInfo.setTypeResponseBody(TextMode.NONE);
         requestInfo.setTypeBody(TextMode.NONE);
+        requestInfo.setHeaders(new HashMap<>());
 
         return requestInfo;
 
