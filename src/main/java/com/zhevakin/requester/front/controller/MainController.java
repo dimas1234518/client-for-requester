@@ -170,18 +170,6 @@ public class MainController {
 
         syncFacade.setUser(currentUser);
 
-        RequestInfo requestInfo = RequestGenerator.createRequest();
-        Map<String, String> heads = new HashMap<>();
-        heads.put("1", "head1");
-        heads.put("2", "heads2");
-        requestInfo.setHeaders(heads);
-        requests.add(requestInfo);
-        requestInfo = RequestGenerator.createRequest();
-        requests.add(requestInfo);
-        requestInfo = RequestGenerator.createFolder();
-        requests.add(requestInfo);
-        importer.saveRequests(requests);
-
         // Заполнение дерева
         requests = importer.loadRequests();
         if (requests.size() != 0) setCurrentRequest(requests.get(0));
@@ -239,7 +227,7 @@ public class MainController {
                 methodComboBox.setVisible(true);
                 methodComboBox.setValue(currentRequestInfo.getRequestMethod());
                 requestTextField.setVisible(true);
-                requestTextField.setText(currentRequestInfo.getRequest());
+                if (currentRequestInfo.getRequest() != null) requestTextField.setText(currentRequestInfo.getRequest());
                 sendButton.setVisible(true);
 
                 if (currentRequestInfo.getTypeBody() != null) requestTextModeComboBox.setValue(currentRequestInfo.getTypeBody());
