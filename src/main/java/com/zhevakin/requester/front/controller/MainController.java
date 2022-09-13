@@ -129,14 +129,21 @@ public class MainController {
 
     public void send(ActionEvent actionEvent) {
 
-        String testUrl = "http://localhost:8084/api/v1/telegrams/";
+        Map<String, String> params;
+        Map<String, String> headers;
 
-        Answer answer = sender.send(testUrl, new HashMap<String, String>(), new HashMap<String, String>(), methodComboBox.getValue(),
+        params = gridGenerator.parseGrid(paramsGrid);
+        headers = gridGenerator.parseGrid(headersGrid);
+
+        Answer answer = sender.send(requestTextField.getText(), headers, params, methodComboBox.getValue(),
                 requestBody.getText());
         statusLabel.setText(answer.getHttpStatus().toString());
-        responseBody.setText(answer.getBody());
+        responseBody.setText(answer.getBody() + "\n" + answer.getHeaders().toString());
 
     }
+
+
+
 
     public void showEnvironments(ActionEvent actionEvent) {
 

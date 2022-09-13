@@ -11,8 +11,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -113,7 +115,7 @@ public class GridGenerator {
         createGrid(headersGrid, gridPane);
 
         int index = 1;
-
+        if (headers == null ) return;
         for (Map.Entry<String,String> pair : headers.entrySet()) {
             Node[] nodes = new Node[2];
             nodes[0] = createCellNode(pair.getKey());
@@ -188,6 +190,29 @@ public class GridGenerator {
         return variables;
     }
 
+    public Map<String, String> parseGrid(GridPane gridPane) {
+
+        Map<String, String> parseMap = new HashMap<>();
+        String key = "";
+        String value = "";
+        TextField currentNode;
+        int index = 0;
+
+        for (Node node : gridPane.getChildren()) {
+            if (node instanceof Label) continue;
+            currentNode = (TextField) node;
+            if (index % 2 == 0)  {
+                key = currentNode.getText();
+            } else if (index % 2 == 1) {
+                value = currentNode.getText();
+                parseMap.put(key,value);
+            }
+            index ++;
+        }
+
+        return parseMap;
+
+    }
 }
 
 
