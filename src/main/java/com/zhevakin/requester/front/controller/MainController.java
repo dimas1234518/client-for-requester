@@ -1,6 +1,7 @@
 package com.zhevakin.requester.front.controller;
 
 import com.zhevakin.requester.additional.Import;
+import com.zhevakin.requester.additional.PrettyText;
 import com.zhevakin.requester.enums.TextMode;
 import com.zhevakin.requester.enums.TypeRequest;
 import com.zhevakin.requester.facade.SyncFacade;
@@ -11,6 +12,7 @@ import com.zhevakin.requester.model.Answer;
 import com.zhevakin.requester.model.CurrentUser;
 import com.zhevakin.requester.model.Environment;
 import com.zhevakin.requester.model.RequestInfo;
+import com.zhevakin.requester.sender.SendRequester;
 import com.zhevakin.requester.sender.Sender;
 import com.zhevakin.requester.service.PropertyService;
 import javafx.collections.FXCollections;
@@ -25,6 +27,7 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 
@@ -106,6 +109,7 @@ public class MainController {
     private FxWeaver fxWeaver;
     private final String ENVIRONMENTS = "Environments";
     private RequestInfo currentRequestInfo;
+    private final Map<TextMode, PrettyText> mapPrettyText;
 
     public void setFxWeaver(FxWeaver fxWeaver) {
         this.fxWeaver = fxWeaver;
@@ -117,13 +121,15 @@ public class MainController {
 
     @Autowired
     public MainController(Sender sender, Import importer, SyncFacade syncFacade, PropertyService propertyService,
-                          TreeGenerator treeGenerator, GridGenerator gridGenerator) {
+                          TreeGenerator treeGenerator, GridGenerator gridGenerator,
+                          @Qualifier("prettyMap") Map<TextMode, PrettyText> mapPrettyText) {
         this.sender = sender;
         this.importer = importer;
         this.syncFacade = syncFacade;
         this.propertyService = propertyService;
         this.treeGenerator = treeGenerator;
         this.gridGenerator = gridGenerator;
+        this.mapPrettyText = mapPrettyText;
         requests = new ArrayList<>();
         environments = new ArrayList<>();
     }
@@ -139,7 +145,12 @@ public class MainController {
         Answer answer = sender.send(requestTextField.getText(), headers, params, methodComboBox.getValue(),
                 requestBody.getText());
         statusLabel.setText(answer.getHttpStatus().toString());
-        responseBody.setText(answer.getBody());
+
+        //responseBody.setText(answer.getBody());
+        responseBody.setText(mapPrettyText
+                            .get(responseTextModeComboBox.getValue())
+                            .prettyPrint(answer.getBody()));
+
 
         gridGenerator.fillHeadersGrid(answer.getSimpleHeaders(), headersResponseGrid);
 
