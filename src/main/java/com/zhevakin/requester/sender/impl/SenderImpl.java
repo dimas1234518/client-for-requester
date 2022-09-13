@@ -22,7 +22,6 @@ public class SenderImpl implements Sender {
         this.mapSenderRequester = mapSenderRequester;
     }
 
-    // TODO : переделать
     public Answer send(String url, Map<String, String> headers, Map<String, String> params,
                        HttpMethod httpMethod, String body) {
 
