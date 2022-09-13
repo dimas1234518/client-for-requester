@@ -3,7 +3,6 @@ package com.zhevakin.requester.front.generator;
 import com.zhevakin.requester.additional.Import;
 import com.zhevakin.requester.additional.impl.ImportImpl;
 import com.zhevakin.requester.facade.SyncFacade;
-import com.zhevakin.requester.front.controller.MainController;
 import com.zhevakin.requester.model.RequestInfo;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

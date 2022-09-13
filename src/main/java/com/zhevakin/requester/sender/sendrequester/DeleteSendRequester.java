@@ -2,7 +2,6 @@ package com.zhevakin.requester.sender.sendrequester;
 
 import com.zhevakin.requester.model.Answer;
 import com.zhevakin.requester.sender.SendRequester;
-import org.apache.http.HttpRequest;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;

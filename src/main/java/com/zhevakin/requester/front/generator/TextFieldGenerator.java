@@ -1,6 +1,5 @@
 package com.zhevakin.requester.front.generator;
 
-import com.zhevakin.requester.front.controller.MainController;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.control.Label;

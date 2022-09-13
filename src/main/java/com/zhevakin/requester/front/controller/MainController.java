@@ -6,7 +6,6 @@ import com.zhevakin.requester.enums.TypeRequest;
 import com.zhevakin.requester.facade.SyncFacade;
 import com.zhevakin.requester.front.generator.GridGenerator;
 import com.zhevakin.requester.front.generator.IconGenerator;
-import com.zhevakin.requester.front.generator.RequestGenerator;
 import com.zhevakin.requester.front.generator.TreeGenerator;
 import com.zhevakin.requester.model.Answer;
 import com.zhevakin.requester.model.CurrentUser;

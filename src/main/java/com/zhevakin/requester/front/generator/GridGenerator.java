@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
