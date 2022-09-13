@@ -37,6 +37,8 @@ import java.util.*;
 public class MainController {
 
     @FXML
+    private GridPane headersResponseGrid;
+    @FXML
     private Tab authTab;
     @FXML
     private TabPane mainTabPane;
@@ -138,7 +140,11 @@ public class MainController {
         Answer answer = sender.send(requestTextField.getText(), headers, params, methodComboBox.getValue(),
                 requestBody.getText());
         statusLabel.setText(answer.getHttpStatus().toString());
-        responseBody.setText(answer.getBody() + "\n" + answer.getHeaders().toString());
+        responseBody.setText(answer.getBody());
+
+        gridGenerator.fillHeadersGrid(answer.getSimpleHeaders(), headersResponseGrid);
+
+
 
     }
 
