@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface RequestSyncService {
 
-    public List<RequestInfo> syncRequests();
+    List<RequestInfo> syncRequests();
 
-    public List<RequestInfo> syncCollection(String idCollection);
+    List<RequestInfo> syncCollection(String idCollection);
 
-    public boolean saveRequests(List<RequestInfo> requests);
+    boolean saveRequests(List<RequestInfo> requests);
 
-    public boolean saveCollection(List<RequestInfo> requests);
+    boolean saveCollection(List<RequestInfo> requests);
 
 }

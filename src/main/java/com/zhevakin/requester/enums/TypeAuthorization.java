@@ -8,8 +8,8 @@ public enum TypeAuthorization {
     API_KEY("API Key", 4),
     BASIC_AUTH("Basic ", 5);
 
-    final private String name;
-    final private int value;
+    private final String name;
+    private final int value;
 
     TypeAuthorization(String name, int value) {
         this.name = name;

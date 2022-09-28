@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public class RequestGenerator {
 
+    private RequestGenerator() {}
+
     public static RequestInfo createRequest() {
 
         RequestInfo requestInfo = new RequestInfo();

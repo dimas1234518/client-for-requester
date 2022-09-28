@@ -21,12 +21,12 @@ public class PutSendRequester implements SendRequester {
     public Answer execute(String url, Map<String, String> params, Map<String, String> headers, String body) {
 
         Answer answer = new Answer();
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        try {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPut httpPut = new HttpPut(makeUrl(url,params));
             httpPut.setEntity(new StringEntity(body));
+            for (Map.Entry<String, String> header : headers.entrySet())
+                httpPut.setHeader(header.getKey(), header.getValue());
             parseAnswer(answer, httpClient.execute(httpPut));
-            httpClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

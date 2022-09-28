@@ -15,10 +15,10 @@ import java.util.Properties;
 @Component
 public class PropertyServiceImpl implements PropertyService  {
 
-    private final String resourceProject = "/src/main/resources";
-    private final String dirProject = System.getProperties().get("user.dir").toString() + resourceProject;
-    private final String propertyFile = "/user.properties";
-    private final String PATH = dirProject + propertyFile;
+    private static final String resourceProject = "/src/main/resources";
+    private static final String dirProject = System.getProperties().get("user.dir").toString() + resourceProject;
+    private static final String propertyFile = "/user.properties";
+    private static final String PATH = dirProject + propertyFile;
     private Properties properties;
 
 

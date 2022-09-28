@@ -6,8 +6,8 @@ public enum TypeRequest {
     FOLDER("FOLDER", 2),
     REQUEST("REQUEST", 3);
 
-    final private String name;
-    final private int value;
+    private final String name;
+    private final int value;
 
     TypeRequest(String name, int value) {
         this.name = name;

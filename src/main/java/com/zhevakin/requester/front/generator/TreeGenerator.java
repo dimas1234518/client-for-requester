@@ -50,7 +50,7 @@ public class TreeGenerator {
 
     }
 
-    public void fillTree(TreeView<RequestInfo> treeView, List<RequestInfo> requestsInfo, List<Tab> tabs, TabPane tabPane) {
+    public void fillTree(TreeView<RequestInfo> treeView, List<RequestInfo> requestsInfo) {
 
         List<RequestInfo> collections = new ArrayList<>();
         List<RequestInfo> folders = new ArrayList<>();
@@ -87,11 +87,9 @@ public class TreeGenerator {
         for (RequestInfo temp : tempList)
             treeParser(root, temp);
 
-        EventHandler<MouseEvent> mouseEventHandler = (MouseEvent event) -> {
+        EventHandler<MouseEvent> mouseEventHandler = (MouseEvent event) ->
             handleMouseClicked(event, treeView);
-        };
 
-//        treeView.addEventHandler(DragEvent.);
         treeView.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEventHandler);
 
     }

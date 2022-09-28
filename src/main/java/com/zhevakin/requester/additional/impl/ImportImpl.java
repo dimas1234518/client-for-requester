@@ -23,15 +23,15 @@ import java.util.List;
 public class ImportImpl implements Import {
 
 
-    private final String resourceProject = "/src/main/resources";
-    private final String dirProject = System.getProperties().get("user.dir").toString() + resourceProject;
-    private final String requestFile = "/requests.json";
-    private final String environmentFile = "/environments.json";
+    private static final String resourceProject = "/src/main/resources";
+    private static final String dirProject = System.getProperties().get("user.dir").toString() + resourceProject;
+    private static final String requestFile = "/requests.json";
+    private static final String environmentFile = "/environments.json";
 
 
     @Override
     public void saveRequest(RequestInfo requestInfo) {
-
+        // TODO: add method
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ImportImpl implements Import {
 
     @Override
     public void saveEnvironment(Environment environment) {
-
+        // todo: Add new method
     }
 
     @Override

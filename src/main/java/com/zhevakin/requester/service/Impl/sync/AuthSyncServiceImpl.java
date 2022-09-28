@@ -26,7 +26,7 @@ public class AuthSyncServiceImpl implements AuthSyncService {
     private boolean isConnected;
 
     private String server = "";
-    private final String API = "api/auth";
+    private static final String API = "api/auth";
 
     private CurrentUser currentUser;
 

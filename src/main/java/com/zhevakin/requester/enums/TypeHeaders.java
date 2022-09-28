@@ -8,8 +8,8 @@ public enum TypeHeaders {
     CONNECTION("Connection", 4),
     ACCEPT("Accept", 5);
 
-    final private String name;
-    final private int value;
+    private final String name;
+    private final int value;
 
     TypeHeaders(String name, int value) {
         this.name = name;

@@ -12,7 +12,6 @@ import com.zhevakin.requester.model.Answer;
 import com.zhevakin.requester.model.CurrentUser;
 import com.zhevakin.requester.model.Environment;
 import com.zhevakin.requester.model.RequestInfo;
-import com.zhevakin.requester.sender.SendRequester;
 import com.zhevakin.requester.sender.Sender;
 import com.zhevakin.requester.service.PropertyService;
 import javafx.collections.FXCollections;
@@ -107,7 +106,7 @@ public class MainController {
     private final TreeGenerator treeGenerator;
     private final GridGenerator gridGenerator;
     private FxWeaver fxWeaver;
-    private final String ENVIRONMENTS = "Environments";
+    private static final String ENVIRONMENTS = "Environments";
     private RequestInfo currentRequestInfo;
     private final Map<TextMode, PrettyText> mapPrettyText;
 
@@ -182,8 +181,8 @@ public class MainController {
         tabs.add(headersTab);
         tabs.add(bodyTab);
 
-        statusButton.setOnMouseEntered(mouseEvent -> { IconGenerator.setRefreshIcon(statusButton); });
-        statusButton.setOnMouseExited(mouseEvent -> {IconGenerator.setStatusIcon(statusButton, syncFacade.isConnected());});
+        statusButton.setOnMouseEntered(mouseEvent -> IconGenerator.setRefreshIcon(statusButton));
+        statusButton.setOnMouseExited(mouseEvent -> IconGenerator.setStatusIcon(statusButton, syncFacade.isConnected()));
 
         CurrentUser currentUser = new CurrentUser(System.getProperty("user.name"));
         String domain = System.getenv("USERDOMAIN");
@@ -195,9 +194,9 @@ public class MainController {
 
         // Заполнение дерева
         requests = importer.loadRequests();
-        if (requests.size() != 0) setCurrentRequest(requests.get(0));
+        if (!requests.isEmpty()) setCurrentRequest(requests.get(0));
         environments = importer.loadEnvironments();
-        treeGenerator.fillTree(requestTree, requests, tabs, mainTabPane);
+        treeGenerator.fillTree(requestTree, requests);
         syncFacade.saveRequests(requests);
         //Заполнение ComboBox
         environmentComboBox.setItems(FXCollections.observableArrayList(environments));
@@ -301,9 +300,9 @@ public class MainController {
         fileChooser.setTitle("Import Collection");
         File selectedFile = fileChooser.showOpenDialog(requestTree.getScene().getWindow());
         if (selectedFile != null) {
-            List<RequestInfo> requests = new ArrayList<>();
-            requests = importer.loadRequests(selectedFile.getPath());
-            TreeItem<RequestInfo> root = new TreeItem<>(requests.stream()
+            List<RequestInfo> importRequests;
+            importRequests = importer.loadRequests(selectedFile.getPath());
+            TreeItem<RequestInfo> root = new TreeItem<>(importRequests.stream()
                     .filter(request -> request.getTypeRequest() == TypeRequest.COLLECTIONS)
                     .findFirst()
                     .orElseThrow());
@@ -329,7 +328,6 @@ public class MainController {
             alert.getButtonTypes().setAll(okButton, noButton);
 
             Optional<ButtonType> optional = alert.showAndWait();
-
             optional.get();
             propertyService.setProperty(refresh, optional.get() != noButton);
 
@@ -343,7 +341,7 @@ public class MainController {
             environments = syncFacade.syncEnvironments();
             importer.saveEnvironments(environments);
             importer.saveRequests(requests);
-            treeGenerator.fillTree(requestTree, requests, tabs, mainTabPane);
+            treeGenerator.fillTree(requestTree, requests);
         }
     }
 }

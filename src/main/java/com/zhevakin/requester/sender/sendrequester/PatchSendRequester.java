@@ -21,12 +21,12 @@ public class PatchSendRequester implements SendRequester {
     @Override
     public Answer execute(String url, Map<String, String> params, Map<String, String> headers, String body) throws IOException {
         Answer answer = new Answer();
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        try {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPatch httpPatch = new HttpPatch(makeUrl(url, params));
             httpPatch.setEntity(new StringEntity(body));
+            for (Map.Entry<String, String> header : headers.entrySet())
+                httpPatch.setHeader(header.getKey(), header.getValue());
             parseAnswer(answer, httpClient.execute(httpPatch));
-            httpClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

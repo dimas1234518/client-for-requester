@@ -12,16 +12,18 @@ import java.io.*;
 
 public class IconGenerator {
 
-    private final static String FORMAT = ".png";
+    private IconGenerator() {}
 
-    private final static String RESOURCE_PROJECT = "/src/main/resources/images";
-    private final static String DIR_PROJECT = System.getProperties().get("user.dir").toString() + RESOURCE_PROJECT;
-    private final static String COLLECTION_IMAGE = DIR_PROJECT + "/Collection" + FORMAT;
-    private final static String NONE_IMAGE = DIR_PROJECT + "/NONE" + FORMAT;
-    private final static String FOLDER_IMAGE = DIR_PROJECT + "/Folder" + FORMAT;
-    private final static String SUCCESS_IMAGE = DIR_PROJECT + "/Success" + FORMAT;
-    private final static String FAILED_IMAGE = DIR_PROJECT + "/Failed" + FORMAT;
-    private final static String REFRESH_IMAGE = DIR_PROJECT + "/Refresh" + FORMAT;
+    private static final String FORMAT = ".png";
+
+    private static final String RESOURCE_PROJECT = "/src/main/resources/images";
+    private static final String DIR_PROJECT = System.getProperties().get("user.dir").toString() + RESOURCE_PROJECT;
+    private static final String COLLECTION_IMAGE = DIR_PROJECT + "/Collection" + FORMAT;
+    private static final String NONE_IMAGE = DIR_PROJECT + "/NONE" + FORMAT;
+    private static final String FOLDER_IMAGE = DIR_PROJECT + "/Folder" + FORMAT;
+    private static final String SUCCESS_IMAGE = DIR_PROJECT + "/Success" + FORMAT;
+    private static final String FAILED_IMAGE = DIR_PROJECT + "/Failed" + FORMAT;
+    private static final String REFRESH_IMAGE = DIR_PROJECT + "/Refresh" + FORMAT;
 
 
     public static void setStatusIcon(Button button, boolean isConnected) {

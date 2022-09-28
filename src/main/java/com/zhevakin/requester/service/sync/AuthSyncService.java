@@ -6,16 +6,16 @@ import com.zhevakin.requester.model.CurrentUser;
 public interface AuthSyncService {
 
 
-    public void setUser(CurrentUser currentUser);
+    void setUser(CurrentUser currentUser);
 
-    public boolean testConnection();
+    boolean testConnection();
 
-    public boolean syncInService();
+    boolean syncInService();
 
-    public boolean isConnected();
+    boolean isConnected();
 
-    public String getToken();
+    String getToken();
 
-    public String getTypeToken();
+    String getTypeToken();
 
 }

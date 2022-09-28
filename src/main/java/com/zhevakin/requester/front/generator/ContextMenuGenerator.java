@@ -60,7 +60,7 @@ public class ContextMenuGenerator {
                 saveItem.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        syncFacade.saveCollection(saveOnServer(requestInfo.getId(), treeView));
+                        syncFacade.saveCollection(saveOnServer(treeView));
                     }
                 });
 
@@ -97,7 +97,7 @@ public class ContextMenuGenerator {
 
     }
 
-    private List<RequestInfo> saveOnServer(String id, TreeView<RequestInfo> treeView) {
+    private List<RequestInfo> saveOnServer(TreeView<RequestInfo> treeView) {
 
         TreeItem<RequestInfo> currentNode = treeView.getSelectionModel().getSelectedItem();
         List<RequestInfo> requests = new ArrayList<>();

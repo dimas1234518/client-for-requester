@@ -19,11 +19,11 @@ public class DeleteSendRequester implements SendRequester {
     @Override
     public Answer execute(String url, Map<String, String> params, Map<String, String> headers, String body) {
         Answer answer = new Answer();
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        try {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpDelete httpDelete= new HttpDelete(makeUrl(url, params));
+            for (Map.Entry<String, String> header : headers.entrySet())
+                httpDelete.setHeader(header.getKey(), header.getValue());
             parseAnswer(answer, httpClient.execute(httpDelete));
-            httpClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

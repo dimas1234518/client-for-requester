@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class JsonConverter {
 
+    private JsonConverter() {}
+
     public static <Model> Model getObjectFromJson(String data, Class<Model> className) {
         Gson gson = new Gson();
         return gson.fromJson(data, className);

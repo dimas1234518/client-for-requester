@@ -7,8 +7,8 @@ public enum TextMode {
     XML("XML", 3),
     TEXT("TEXT", 4);
 
-    final private String name;
-    final private int value;
+    private final String name;
+    private final int value;
 
     TextMode(String name, int value) {
         this.name = name;

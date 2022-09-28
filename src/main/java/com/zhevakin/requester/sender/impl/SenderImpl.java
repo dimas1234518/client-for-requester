@@ -38,19 +38,4 @@ public class SenderImpl implements Sender {
 
 
     }
-
-//    private Header getHeaders(Map<String,String> headers) {
-//
-//        HttpHeaders httpHeaders = new HttpHeaders();
-//
-//        for (Map.Entry<String, String> header : headers.entrySet()) {
-//            httpHeaders.put(header.getKey(), Collections.singletonList(header.getValue()));
-//        }
-//
-//        return httpHeaders;
-//
-//    }
-
-
-
 }

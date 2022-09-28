@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public interface PropertyService {
 
-    public void init() throws IOException;
+    void init() throws IOException;
 
     <object> void addProperty(String key, object value) throws IOException;
 
@@ -14,6 +14,6 @@ public interface PropertyService {
 
     String getProperty(String key);
 
-    public void saveProperties() throws IOException;
+    void saveProperties() throws IOException;
 
 }

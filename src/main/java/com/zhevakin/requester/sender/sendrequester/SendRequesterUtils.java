@@ -14,6 +14,8 @@ import java.util.Map;
 
 public class SendRequesterUtils {
 
+    private SendRequesterUtils(){}
+
     public static void parseAnswer(Answer answer, CloseableHttpResponse execute) throws IOException {
         answer.setBody(EntityUtils.toString(execute.getEntity()));
         answer.setHttpStatus(HttpStatus.valueOf(execute.getStatusLine().getStatusCode()));

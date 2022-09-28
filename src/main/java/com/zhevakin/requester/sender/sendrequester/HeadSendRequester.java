@@ -19,11 +19,11 @@ public class HeadSendRequester implements SendRequester {
     @Override
     public Answer execute(String url, Map<String, String> params, Map<String, String> headers, String body) throws IOException {
         Answer answer = new Answer();
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        try {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()){
             HttpHead httpHead = new HttpHead(makeUrl(url, params));
+            for (Map.Entry<String, String> header : headers.entrySet())
+                httpHead.setHeader(header.getKey(), header.getValue());
             parseAnswer(answer, httpClient.execute(httpHead));
-            httpClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

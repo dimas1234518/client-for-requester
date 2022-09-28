@@ -11,7 +11,9 @@ import java.util.Arrays;
 
 public class InitController {
 
-    public static void start(MainController controller, GridGenerator gridGenerator, EnvironmentController environmentController) {
+    private InitController() {}
+
+    public static void start(MainController controller, GridGenerator gridGenerator) {
 
         controller.getMethodComboBox().setItems(FXCollections.observableArrayList(Arrays.asList(HttpMethod.values())));
         controller.getMethodComboBox().setValue(HttpMethod.GET);
@@ -19,9 +21,11 @@ public class InitController {
         String[] headers = new String[] {"Key", "Value"};
         gridGenerator.createGrid(headers, controller.getParamsGrid());
         gridGenerator.createGrid(headers, controller.getHeadersGrid());
-        controller.getRequestTextField().textProperty().addListener((observable, oldValue, newValue) -> {
-           gridGenerator.fillParamsGrid(oldValue, newValue, controller);
-        });
+        gridGenerator.addGridEvent(controller.getParamsGrid(), controller.getRequestTextField());
+        gridGenerator.addGridEvent(controller.getHeadersGrid(),controller.getRequestTextField());
+        controller.getRequestTextField().textProperty().addListener((observable, oldValue, newValue) ->
+           gridGenerator.fillParamsGrid(oldValue, newValue, controller)
+        );
         TreeGenerator.createTree(controller);
     }
 

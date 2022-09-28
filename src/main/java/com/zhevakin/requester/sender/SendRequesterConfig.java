@@ -14,8 +14,6 @@ public class SendRequesterConfig {
 
     private final Map<HttpMethod, SendRequester> myAutowireMap = new HashMap<>();
 
-    public SendRequesterConfig(){}
-
     @Bean
     @Qualifier("senderMap")
     public Map<HttpMethod, SendRequester> mapBean(List<SendRequester> sendRequesterList) {

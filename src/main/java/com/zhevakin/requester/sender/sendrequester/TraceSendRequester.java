@@ -20,11 +20,11 @@ public class TraceSendRequester implements SendRequester {
     @Override
     public Answer execute(String url, Map<String, String> params, Map<String, String> headers, String body) throws IOException {
         Answer answer = new Answer();
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        try {
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()){
             HttpTrace httpTrace = new HttpTrace(makeUrl(url, params));
+            for (Map.Entry<String, String> header : headers.entrySet())
+                httpTrace.setHeader(header.getKey(), header.getValue());
             parseAnswer(answer, httpClient.execute(httpTrace));
-            httpClient.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

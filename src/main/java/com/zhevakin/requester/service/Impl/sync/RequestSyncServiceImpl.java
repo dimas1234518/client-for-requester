@@ -12,15 +12,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class RequestSyncServiceImpl implements RequestSyncService {
 
-    private final String API = "api/requests";
+    private static final String API = "api/requests";
+    private static final String AUTHORIZATION = "Authorization";
 
     private String server = "";
 
@@ -40,18 +38,18 @@ public class RequestSyncServiceImpl implements RequestSyncService {
         String method = "/";
         Map<String,String> headers = new HashMap<>();
         Map<String,String> params  = new HashMap<>();
-        headers.put("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
+        headers.put(AUTHORIZATION, authSyncService.getTypeToken() + " " + authSyncService.getToken());
         Answer answer = sender.send(server + API + method, headers, params, HttpMethod.GET, "");
 
         if (answer.getHttpStatus() == HttpStatus.FORBIDDEN) {
             authSyncService.syncInService();
-            headers.replace("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
+            headers.replace(AUTHORIZATION, authSyncService.getTypeToken() + " " + authSyncService.getToken());
             answer = sender.send(server + API, headers, params, HttpMethod.GET, "");
-            if (answer.getHttpStatus() != HttpStatus.OK) return null;
+            if (answer.getHttpStatus() != HttpStatus.OK) return Collections.emptyList();
         }
         if (answer.getHttpStatus() == HttpStatus.OK) return Arrays.asList(JsonConverter
                 .getObjectFromJson(answer.getBody(), RequestInfo[].class));
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -60,19 +58,19 @@ public class RequestSyncServiceImpl implements RequestSyncService {
         Map<String,String> headers = new HashMap<>();
         Map<String,String> params  = new HashMap<>();
 
-        headers.put("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
+        headers.put(AUTHORIZATION, authSyncService.getTypeToken() + " " + authSyncService.getToken());
 
         Answer answer = sender.send(server + API + method + idCollection, headers, params, HttpMethod.GET, "");
 
         if (answer.getHttpStatus() == HttpStatus.FORBIDDEN) {
             authSyncService.syncInService();
-            headers.replace("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
+            headers.replace(AUTHORIZATION, authSyncService.getTypeToken() + " " + authSyncService.getToken());
             answer = sender.send(server + API + method + idCollection, headers, params, HttpMethod.GET, "");
-            if (answer.getHttpStatus() != HttpStatus.OK) return null;
+            if (answer.getHttpStatus() != HttpStatus.OK) return Collections.emptyList();
         }
         if (answer.getHttpStatus() == HttpStatus.OK) return Arrays.asList(JsonConverter.getObjectFromJson(answer.getBody(),
                                                                 RequestInfo[].class));
-        return null;
+        return Collections.emptyList();
     }
 
     @Override
@@ -92,13 +90,13 @@ public class RequestSyncServiceImpl implements RequestSyncService {
         Map<String,String> headers = new HashMap<>();
         Map<String,String> params  = new HashMap<>();
         String body = JsonConverter.getJsonFromObject(requests);
-        headers.put("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
+        headers.put(AUTHORIZATION, authSyncService.getTypeToken() + " " + authSyncService.getToken());
 
         Answer answer = sender.send(server + API + method, headers, params, HttpMethod.POST, body);
 
         if (answer.getHttpStatus() == HttpStatus.FORBIDDEN) {
             authSyncService.syncInService();
-            headers.replace("Authorization", authSyncService.getTypeToken() + " " + authSyncService.getToken());
+            headers.replace(AUTHORIZATION, authSyncService.getTypeToken() + " " + authSyncService.getToken());
             answer = sender.send(server + API + method, headers, params, HttpMethod.POST, body);
             if (answer.getHttpStatus() != HttpStatus.OK) return false;
         }

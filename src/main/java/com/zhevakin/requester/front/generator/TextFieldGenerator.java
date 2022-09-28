@@ -8,6 +8,8 @@ import javafx.scene.layout.GridPane;
 
 public class TextFieldGenerator {
 
+    private TextFieldGenerator() {}
+
     public static void textFieldListener(String oldText, String newText, GridPane gridPane, boolean params,
                                          TextField requestTextField) {
 

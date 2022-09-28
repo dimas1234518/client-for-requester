@@ -55,12 +55,12 @@ public class GridGenerator {
      * @param gridPane paramsGrid or headersGrid
      * @return TextField
      */
-    public TextField createCellNode(String text, GridPane gridPane, boolean params, MainController controller) {
+    public TextField createCellNode(String text, GridPane gridPane, boolean params, TextField textFieldFromController) {
         TextField textField = new TextField(text);
         textField.setMaxWidth(Double.MAX_VALUE);
         textField.setStyle("-fx-border-style: solid; -fx-background-color: white;");
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
-           textFieldListener(oldValue, newValue, gridPane, params, controller.getRequestTextField());
+           textFieldListener(oldValue, newValue, gridPane, params, textFieldFromController);
         });
 
         return textField;
@@ -151,12 +151,12 @@ public class GridGenerator {
             int i = 0;
 
             while (i < inputString.length) {
-                nodes[i] = createCellNode(inputString[i], gridPane, true, mainController);
+                nodes[i] = createCellNode(inputString[i], gridPane, true, mainController.getRequestTextField());
                 i++;
                 if (i == 2) break;
             }
 
-            if (inputString.length == 1) nodes[1] = createCellNode("", gridPane, true, mainController);
+            if (inputString.length == 1) nodes[1] = createCellNode("", gridPane, true, mainController.getRequestTextField());
 
             gridPane.getRowConstraints().add(getRowConstraints());
             for (int j = 0; j < nodes.length; j++) {
@@ -211,6 +211,48 @@ public class GridGenerator {
 
         return parseMap;
 
+    }
+
+    public void addGridEvent(GridPane gridPane, TextField requestTextField) {
+        gridPane.getChildren().forEach(item -> {
+            if (!(item instanceof Label)) {
+                TextField currentNode = (TextField) item;
+                currentNode.textProperty().addListener((observable, oldValue, newValue) -> {
+
+                    String request = requestTextField.getText();
+
+                    int index = 1;
+
+                    String[] splitUrl = request.split("\\?");
+                    if (splitUrl.length < 2) return;
+
+                    String[] inputParams = splitUrl[1].split("&");
+                    for (String input : inputParams) {
+                        Node[] nodes = new Node[2];
+
+                        String[] inputString = input.split("=");
+                        int i = 0;
+
+                        while (i < inputString.length) {
+                            nodes[i] = createCellNode(inputString[i], gridPane, true, requestTextField);
+                            i++;
+                            if (i == 2) break;
+                        }
+
+                        if (inputString.length == 1) nodes[1] = createCellNode("", gridPane, true, requestTextField);
+
+                        gridPane.getRowConstraints().add(getRowConstraints());
+                        for (int j = 0; j < nodes.length; j++) {
+                            gridPane.add(nodes[j], j, index);
+                        }
+
+                        index++;
+
+                    }
+
+                });
+            }
+        });
     }
 }
 
